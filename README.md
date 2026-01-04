@@ -1,61 +1,356 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# EHF KASIR - Sistem Point of Sale Restoran
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Sistem informasi Point of Sale (POS) berbasis web untuk manajemen restoran dengan fitur pemesanan meja menggunakan QR Code.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Daftar Isi
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+-   [Tentang Proyek](#tentang-proyek)
+-   [Fitur Utama](#fitur-utama)
+-   [Teknologi yang Digunakan](#teknologi-yang-digunakan)
+-   [Persyaratan Sistem](#persyaratan-sistem)
+-   [Instalasi](#instalasi)
+-   [Konfigurasi](#konfigurasi)
+-   [Penggunaan](#penggunaan)
+-   [Struktur Proyek](#struktur-proyek)
+-   [Lisensi](#lisensi)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## Tentang Proyek
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+EHF KASIR adalah aplikasi Point of Sale (POS) yang dirancang khusus untuk kebutuhan restoran. Sistem ini memungkinkan pelanggan untuk melakukan pemesanan secara mandiri dengan cara scan QR Code pada meja, sementara admin dapat mengelola menu, meja, pesanan, dan melihat laporan penjualan melalui panel administrasi.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Fitur Utama
 
-## Laravel Sponsors
+### A. Panel Administrasi
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+#### 1. Dashboard
 
-### Premium Partners
+-   Statistik total menu, meja, dan pesanan
+-   Total pendapatan keseluruhan
+-   Jumlah pesanan hari ini
+-   Pendapatan hari ini
+-   Daftar 5 pesanan terbaru
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+#### 2. Manajemen Menu
 
-## Contributing
+-   Tambah menu baru dengan gambar
+-   Edit informasi menu (nama, harga, deskripsi)
+-   Hapus menu
+-   Atur kategori menu
+-   Atur status ketersediaan menu (tersedia/tidak tersedia)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+#### 3. Manajemen Kategori
 
-## Code of Conduct
+-   Tambah kategori menu baru
+-   Edit nama kategori
+-   Hapus kategori
+-   Lihat daftar menu per kategori
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+#### 4. Manajemen Meja
 
-## Security Vulnerabilities
+-   Tambah meja baru dengan nomor unik
+-   Edit informasi meja
+-   Hapus meja
+-   Atur kapasitas meja
+-   Atur status meja (tersedia/terisi/reserved)
+-   Generate QR Code untuk setiap meja
+-   Generate QR Code dengan logo
+-   Download QR Code dalam format gambar
+-   Regenerate semua QR Code sekaligus
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+#### 5. Manajemen Pesanan
 
-## License
+-   Lihat daftar semua pesanan
+-   Filter pesanan berdasarkan status
+-   Lihat detail pesanan lengkap
+-   Update status pesanan (pending, preparing, ready, completed, cancelled)
+-   Update status pembayaran (unpaid, paid)
+-   Quick action untuk aksi cepat
+-   Bulk update status untuk multiple pesanan
+-   Cetak struk pesanan
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+#### 6. Manajemen Metode Pembayaran
+
+-   Tambah metode pembayaran baru
+-   Edit informasi metode pembayaran
+-   Hapus metode pembayaran
+-   Atur status aktif/nonaktif
+
+#### 7. Laporan Penjualan
+
+-   Filter laporan berdasarkan rentang tanggal
+-   Total pendapatan dalam periode
+-   Total pesanan dalam periode
+-   Pesanan yang sudah selesai
+-   Rata-rata nilai pesanan
+-   Tingkat penyelesaian pesanan
+-   Grafik penjualan harian
+-   Top 10 menu terlaris
+-   Breakdown berdasarkan metode pembayaran
+-   Export laporan ke PDF
+
+#### 8. Autentikasi Admin
+
+-   Halaman login admin
+-   Logout admin
+-   Proteksi route dengan middleware
+
+### B. Sisi Pelanggan
+
+#### 1. Halaman Utama
+
+-   Informasi restoran
+-   Panduan cara pemesanan
+-   Instruksi scan QR Code
+
+#### 2. Scan QR Code Meja
+
+-   Akses menu otomatis setelah scan
+-   Validasi status meja
+-   Halaman meja tidak tersedia
+
+#### 3. Pemesanan Menu
+
+-   Tampilan daftar menu dengan gambar
+-   Filter menu berdasarkan kategori
+-   Tambah item ke keranjang
+-   Atur jumlah pesanan
+-   Input nama pelanggan
+-   Input catatan pesanan
+-   Pilih metode pembayaran
+-   Konfirmasi pesanan
+
+#### 4. Konfirmasi Pesanan
+
+-   Detail pesanan lengkap
+-   Nomor pesanan unik
+-   Informasi meja
+-   Daftar item yang dipesan
+-   Total pembayaran
+
+#### 5. Status Pesanan
+
+-   Tracking status pesanan real-time
+-   Status: Pending, Preparing, Ready, Completed
+
+#### 6. Struk Digital
+
+-   Tampilan struk pembayaran
+-   Informasi lengkap pesanan
+-   Opsi cetak struk
+
+---
+
+## Teknologi yang Digunakan
+
+### Backend
+
+| Teknologi         | Versi |
+| ----------------- | ----- |
+| PHP               | 8.2+  |
+| Laravel Framework | 12.0  |
+| Eloquent ORM      | -     |
+
+### Frontend
+
+| Teknologi      | Versi |
+| -------------- | ----- |
+| Tailwind CSS   | 4.0   |
+| Vite           | 7.0   |
+| Blade Template | -     |
+| Font Awesome   | 6.4   |
+
+### Database
+
+| Teknologi | Keterangan  |
+| --------- | ----------- |
+| SQLite    | Development |
+| MySQL     | Production  |
+
+### Library Tambahan
+
+| Library                        | Fungsi                |
+| ------------------------------ | --------------------- |
+| barryvdh/laravel-dompdf        | Generate PDF struk    |
+| simplesoftwareio/simple-qrcode | Generate QR Code meja |
+
+---
+
+## Persyaratan Sistem
+
+-   PHP >= 8.2
+-   Composer
+-   Node.js >= 18
+-   NPM atau Yarn
+-   MySQL / SQLite
+
+---
+
+## Instalasi
+
+### 1. Clone Repository
+
+```bash
+git clone https://github.com/username/pos-restoran.git
+cd pos-restoran
+```
+
+### 2. Install Dependensi PHP
+
+```bash
+composer install
+```
+
+### 3. Install Dependensi JavaScript
+
+```bash
+npm install
+```
+
+### 4. Salin File Environment
+
+```bash
+cp .env.example .env
+```
+
+### 5. Generate Application Key
+
+```bash
+php artisan key:generate
+```
+
+### 6. Konfigurasi Database
+
+Edit file `.env` dan sesuaikan konfigurasi database:
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=pos_restoran
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+### 7. Jalankan Migrasi dan Seeder
+
+```bash
+php artisan migrate --seed
+```
+
+### 8. Buat Symbolic Link Storage
+
+```bash
+php artisan storage:link
+```
+
+### 9. Build Asset Frontend
+
+```bash
+npm run build
+```
+
+---
+
+## Konfigurasi
+
+### Menjalankan Development Server
+
+```bash
+# Jalankan semua service sekaligus
+composer dev
+
+# Atau jalankan secara terpisah
+php artisan serve
+npm run dev
+```
+
+### Akses Aplikasi
+
+| Halaman       | URL                               |
+| ------------- | --------------------------------- |
+| Halaman Utama | http://localhost:8000             |
+| Panel Admin   | http://localhost:8000/admin/login |
+
+---
+
+## Penggunaan
+
+### Login Admin
+
+Gunakan kredensial default setelah menjalankan seeder:
+
+```
+Email: admin@example.com
+Password: password
+```
+
+### Alur Kerja
+
+1. **Admin** login dan mengatur menu, kategori, dan meja
+2. **Admin** generate QR Code untuk setiap meja
+3. **Pelanggan** scan QR Code pada meja
+4. **Pelanggan** memilih menu dan melakukan pemesanan
+5. **Admin** memproses pesanan dan mengubah status
+6. **Pelanggan** melihat status dan mencetak struk
+
+---
+
+## Struktur Proyek
+
+```
+pos-restoran/
+├── app/
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   │   ├── Admin/          # Controller panel admin
+│   │   │   └── User/           # Controller sisi pelanggan
+│   │   └── Middleware/
+│   ├── Models/                 # Model Eloquent
+│   └── Services/               # Service layer
+├── database/
+│   ├── migrations/             # File migrasi database
+│   └── seeders/                # File seeder
+├── resources/
+│   ├── views/
+│   │   ├── admin/              # View panel admin
+│   │   └── user/               # View pelanggan
+│   ├── css/
+│   └── js/
+├── routes/
+│   └── web.php                 # Definisi routing
+├── public/
+│   └── storage/                # File upload dan QR Code
+└── ...
+```
+
+---
+
+## Testing
+
+Jalankan unit test dengan perintah:
+
+```bash
+php artisan test
+```
+
+atau
+
+```bash
+composer test
+```
+
+---
+
+## Lisensi
+
+Proyek ini dilisensikan di bawah [MIT License](LICENSE).
+
+---
+
+Dibuat dengan Laravel
